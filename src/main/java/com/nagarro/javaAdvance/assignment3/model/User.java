@@ -9,18 +9,19 @@ import com.nagarro.javaAdvance.assignment3.hibernate.HibernateUtil;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue
-    int id;
-    String fullName;
+    private int id;
+    private String fullName;
 
     @Column(name = "username", unique = true)
-    String userName;
-    String email;
-    String Pass;
+    private String userName;
+    private String email;
+    private String Pass;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    List<Image> imageList;
+    private List<Image> imageList;
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -76,5 +77,4 @@ public class User {
         session.close();
         return li;
     }
-
 }

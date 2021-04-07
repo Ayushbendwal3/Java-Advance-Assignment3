@@ -8,17 +8,21 @@ import javax.persistence.*;
 public class Image {
     @Id
     @GeneratedValue
-    int id;
+    private int id;
+
     @Transient
-    File file;
+    private File file;
+
     @Column(name = "Image_Name")
-    String imgName;
-    long imgSize;
+    private String imgName;
+
+    private long imgSize;
+
     @Lob
     private byte[] imageData;
 
     @ManyToOne
-    User user;
+    private User user;
 
     public int getId() {
         return id;

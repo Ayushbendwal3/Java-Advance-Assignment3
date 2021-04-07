@@ -52,7 +52,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>ForgetPass</servlet-name>
-  	<url-pattern>/forgetPass</url-pattern>
+  	<url-pattern>/ForgetPass</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ImageDelete</servlet-name>

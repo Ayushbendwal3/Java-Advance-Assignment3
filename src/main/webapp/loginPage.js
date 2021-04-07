@@ -1,47 +1,47 @@
 $(function () {
 
-	const radio = $("input[type=radio]");
+    //forms
+    const fpForm = $("#fpForm");
+    const loginForm = $("#loginForm");
+    const registrationForm = $("#registrationForm");
 
-	//divs
-	const kindOfUserDiv = $("#kindOfUser");
-	const loginDiv = $("#login");
-	const registerDiv = $("#register");
-	const forgotPasswordDiv = $("#forgotPasswordDiv");
+    //Msg
+    const fpValidationMsg = $("#fpValidationMsg");
+    const loginValidationMsg = $("#loginValidationMsg");
+    const RegistrationValidationMsg = $("#RegistrationValidationMsg");
 
-	//link of forgot Pass
-	const fpassSpan = $("#fpassSpan");
+    //input form controls
+    const registerPass = $("#registerPass");
+    const registerRePass = $("#registerRePass");
+    const registerFullName = $("#registerFullName");
+    const registerUserName = $("#registerUserName");
+    const registerEmail = $("#registerEmail");
 
-	//forms
-	const fpForm = $("#fpForm");
-	const loginForm = $("#loginForm");
-	const registrationForm = $("#registrationForm");
-
-	//Msg
-	const fpValidationMsg = $("#fpValidationMsg");
-	const loginValidationMsg = $("#loginValidationMsg");
-	const RegistrationValidationMsg = $("#RegistrationValidationMsg");
-
-	//input form controls
-	const registerPass = $("#registerPass");
-	const registerRePass = $("#registerRePass");
-	const registerFullName = $("#registerFullName");
-	const registerUserName = $("#registerUserName");
-	const registerEmail = $("#registerEmail");
-
-
-	radio.on("click", function () {
-        let val = $(this).val();
-        $(this).prop('checked', false);
-        kindOfUserDiv.css("display", "none");
-        if (val === "existing")
-            loginDiv.css("display", "block");
-        else
-            registerDiv.css("display", "block");
+    $('#login-form-link').click(function (e) {
+        $("#loginForm").delay(100).fadeIn(100);
+        $("#registrationForm").fadeOut(100);
+        $("#fpForm").fadeOut(100);
+        $('#register-form-link').removeClass('active');
+        $('#forget-pass-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+    });
+    $('#register-form-link').click(function (e) {
+        $("#registrationForm").delay(100).fadeIn(100);
+        $("#loginForm").fadeOut(100);
+        $("#fpForm").fadeOut(100);
+        $('#login-form-link').removeClass('active');
+        $('#forget-pass-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
     });
 
-    fpassSpan.on("click", function () {
-        loginDiv.css("display", "none");
-        forgotPasswordDiv.css("display", "block");
+    $('#forget-pass-link').click(function (e) {
+        $("#fpForm").delay(100).fadeIn(100);
+        $("#loginForm").fadeOut(100);
+        $('#login-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
     });
 
     fpForm.on("submit", function (e) {
@@ -49,11 +49,10 @@ $(function () {
         let b = $("#forgotPasswordEmail").val();
         e.preventDefault();
         $.ajax({
-            url: "forgotPass", method: "post", data: {Username: a, email: b}, success: function (data) {
+            url: "ForgotPass", method: "post", data: {Username: a, email: b}, success: function (data) {
                 fpValidationMsg.html(data);
             }
         });
-        fpValidationMsg.css("display", "block");
     });
 
     loginForm.on("submit", function (e) {
@@ -67,7 +66,6 @@ $(function () {
                     window.location.replace("ImageUtility");
             }
         });
-        loginValidationMsg.css("display", "block");
     });
 
     registrationForm.on("submit", function (event) {
