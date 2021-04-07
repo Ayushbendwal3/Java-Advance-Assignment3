@@ -1,6 +1,7 @@
 package com.nagarro.javaAdvance.assignment3.servlet;
 
 import java.io.IOException;
+import java.io.Serial;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,23 +17,24 @@ import com.nagarro.javaAdvance.assignment3.model.User;
  * Servlet implementation class ImageDelete
  */
 public class ImageDelete extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("Welcome");
-	}
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String str = request.getParameter("imageId");
-		int id  =  Integer.parseInt(str) ;
-		Session session = HibernateUtil.sf.openSession();
-		session.beginTransaction();
-		Image i = (Image) session.get(Image.class, id);
-		User u = i.getUser();
-		u.getImageList().remove(i);
-		session.delete(i);
-		session.getTransaction().commit();
-		session.close();
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("Welcome");
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String str = request.getParameter("imageId");
+        int id = Integer.parseInt(str);
+        Session session = HibernateUtil.sf.openSession();
+        session.beginTransaction();
+        Image i = session.get(Image.class, id);
+        User u = i.getUser();
+        u.getImageList().remove(i);
+        session.delete(i);
+        session.getTransaction().commit();
+        session.close();
+    }
 
 }

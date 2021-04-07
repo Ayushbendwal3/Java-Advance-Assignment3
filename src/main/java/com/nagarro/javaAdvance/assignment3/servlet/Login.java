@@ -1,6 +1,7 @@
 package com.nagarro.javaAdvance.assignment3.servlet;
 
 import java.io.IOException;
+import java.io.Serial;
 
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import com.nagarro.javaAdvance.assignment3.model.User;
  * Servlet implementation class Login
  */
 public class Login extends HttpServlet {
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +41,7 @@ public class Login extends HttpServlet {
 		}
 		else if(user.getPass().equals(pass))
 		{
-			response.getWriter().print("Login sucessful");
+			response.getWriter().print("Login successful");
 			response.addCookie(new Cookie("username", username));
 			response.addCookie(new Cookie("pass", pass));
 		}
